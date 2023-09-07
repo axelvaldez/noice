@@ -1,0 +1,252 @@
+html{
+    font-size: 18px;
+    scroll-behavior: smooth;
+
+    --w: 60vw;
+    --h: 60vh;
+
+    --marginw: calc(50vw - calc(var(--w) / 2));
+    --marginh: calc(50vh - calc(var(--h) / 2));        
+    --contentw: calc(var(--w) * .67);
+    --decorw: calc(var(--w) - var(--contentw));
+
+    --color-text: #BBBCBE;
+    --color-text-bright: #fff;
+    --color-accent: #EF5D55;
+    --color-page: #141416;
+    --color-card: #1B1C20;
+    --color-card-alt: #1a1b1f;
+}
+
+
+
+
+
+
+
+body{
+    margin: var(--marginh) 0 0;
+    color: var(--color-text);
+    background-color: var(--color-page);
+    font-family: 'Average Sans', sans-serif;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+body::before,
+body::after{
+    content: "";
+    position: fixed;
+    background-color: var(--color-page);
+    inset: 0 0 auto 0;
+    height: var(--marginh);
+    z-index: 5;
+}
+body::after{
+    --bgsize: calc(var(--w) * 1.08);
+    inset: auto 0 0 0;
+    background-image: url(/assets/img/shadow.png);
+    background-size: var(--bgsize);
+    background-position: calc(calc(100vw - var(--bgsize)) / 2) 0;
+    background-blend-mode: darken;
+    background-repeat: no-repeat;
+}
+
+nav{
+    position: fixed;
+    inset: var(--marginh) auto auto var(--marginw);
+    width: var(--contentw);
+    height: 6rem;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 4rem 0;
+    box-sizing: border-box;
+}
+
+nav:after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    backdrop-filter: blur(128px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.logo{
+    margin: 0;
+    width: 14rem;
+    height: 2rem;
+    background-image: url(/assets/img/noice.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-top: 2rem;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+
+nav ul{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+}
+
+nav li{
+    margin-right: 1rem;
+}
+
+nav a{
+    display: block;
+    color: var(--color-text-bright);
+    text-decoration: none;
+    line-height: 2rem;
+    transition: ease-in all 200ms;
+}
+
+nav a:hover{
+    color: var(--color-accent);
+    transform: translateY(-5px);
+}
+
+main{
+    width: var(--w);
+    padding-right: var(--decorw);
+    box-sizing: border-box;
+    position: relative;
+    margin: 0 auto;
+    scroll-snap-type: y mandatory;
+}
+
+section{
+    height: var(--h);
+    display: grid;
+    align-content: center;
+    padding: 5rem 4rem 4rem;
+    box-sizing: border-box;
+    background-color: var(--color-card);
+    scroll-snap-align: start;
+}
+
+section:nth-child(even){
+    background: var(--color-card-alt);
+}
+
+section:last-child{
+    margin-bottom: var(--marginh);
+}
+
+h2, h3{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    color: var(--color-text-bright);        
+}
+
+h2{
+    font-weight: 800;
+    font-size: 3rem;
+    margin: 0;
+    padding-bottom: .5rem;
+    margin-bottom: .75rem;
+    position: relative;
+}
+
+h2::after{
+    content: "";
+    width: 5rem;
+    height: .25rem;
+    border-radius: 1rem;
+    background: var(--color-accent);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+h3{
+    font-size: 2rem;
+}
+
+p{
+    margin: 0 0 1rem;
+}
+
+p:last-child{
+    margin-bottom: 0;
+}
+
+
+.side{
+    position: fixed;
+    width: var(--decorw);
+    inset: var(--marginh) var(--marginw) var(--marginh) auto;
+    background-color: var(--color-accent);
+}
+
+.side > *{
+    position: absolute;
+    inset: 0;
+    background-size: 100%;
+}
+
+
+
+/* width media queries */
+
+@media (max-width: 1800px){
+    html{
+        --w: 80vw;
+    }
+}
+
+@media (max-width: 1600px){
+    html{
+        --w: 90vw;
+    }
+}
+
+@media (max-width: 1100px){
+    html{
+        --w: 96vw;
+    }
+}
+
+/* height media queries */
+
+@media (max-height: 1000px){
+    html{
+        --h: 80vh;
+    }
+}
+
+@media (max-height: 700px){
+    html{
+        --h: 90vh;
+    }
+}
+
+/* too small for card */
+
+@media (max-width: 900px){
+    html{
+        --w: 100vw;
+        --h: 100vh;
+    }
+
+    body::before, body::after{
+        content: unset;
+        display: none;
+    }
+
+    main{
+        padding: 0;
+    }
+
+    section{
+        height: unset;
+    }
+
+    .side{
+        display: none;
+    }
+}
