@@ -18,12 +18,6 @@ html{
     --color-card-alt: #1a1b1f;
 }
 
-
-
-
-
-
-
 body{
     margin: var(--marginh) 0 0;
     color: var(--color-text);
@@ -85,6 +79,15 @@ nav:after{
     overflow: hidden;
 }
 
+@media (max-width: 980px){
+    .logo{
+        width: 11rem;
+        height: 1.5rem;
+        padding-top: 1.5rem;
+        margin-top: .25rem;
+    }
+}
+
 
 nav ul{
     margin: 0;
@@ -94,7 +97,7 @@ nav ul{
 }
 
 nav li{
-    margin-right: 1rem;
+    margin-left: .5rem;
 }
 
 nav a{
@@ -127,6 +130,7 @@ section{
     box-sizing: border-box;
     background-color: var(--color-card);
     scroll-snap-align: start;
+    position:relative;
 }
 
 section:nth-child(even){
@@ -135,6 +139,11 @@ section:nth-child(even){
 
 section:last-child{
     margin-bottom: var(--marginh);
+}
+
+section .anchor{
+    position: absolute;
+    top: calc(var(--marginh) * -1);
 }
 
 h2, h3{
@@ -205,11 +214,7 @@ p:last-child{
     }
 }
 
-@media (max-width: 1100px){
-    html{
-        --w: 96vw;
-    }
-}
+
 
 /* height media queries */
 
@@ -219,18 +224,26 @@ p:last-child{
     }
 }
 
-@media (max-height: 700px){
+@media (max-width: 1100px){
     html{
-        --h: 90vh;
+        --w: 100vw;
+        --h: 100vh;
+    }
+}
+
+@media (max-width: 860px){
+    html{
+        --contentw: 80vw;
     }
 }
 
 /* too small for card */
 
-@media (max-width: 900px){
+@media (max-width: 700px){
     html{
         --w: 100vw;
         --h: 100vh;
+        --contentw: var(--w);
     }
 
     body::before, body::after{
